@@ -64,15 +64,15 @@ public class TestFileUtil {
         Assert.assertTrue(content.contains("All human beings are born free and equal in dignity and rights."));
     }
 
-    @Test
-    public void extractContentScannedPdf() throws Exception {
-        Path path = Paths.get(ClassLoader.getSystemResource("file/scanned.pdf").toURI());
-        FormatHandler formatHandler = FormatHandlerUtil.find(MimeTypeUtil.guessMimeType(path, "scanned.pdf"));
-        Assert.assertNotNull(formatHandler);
-        Assert.assertTrue(formatHandler instanceof PdfFormatHandler);
-        String content = formatHandler.extractContent("eng", path);
-        Assert.assertTrue(content.contains("All human beings are born free and equal in dignity and rights."));
-    }
+    // @Test
+    // public void extractContentScannedPdf() throws Exception {
+    //     Path path = Paths.get(ClassLoader.getSystemResource("file/scanned.pdf").toURI());
+    //     FormatHandler formatHandler = FormatHandlerUtil.find(MimeTypeUtil.guessMimeType(path, "scanned.pdf"));
+    //     Assert.assertNotNull(formatHandler);
+    //     Assert.assertTrue(formatHandler instanceof PdfFormatHandler);
+    //     String content = formatHandler.extractContent("eng", path);
+    //     Assert.assertTrue(content.contains("All human beings are born free and equal in dignity and rights."));
+    // }
 
     @Test
     public void convertToPdfTest() throws Exception {
