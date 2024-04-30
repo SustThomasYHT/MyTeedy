@@ -42,7 +42,7 @@ pipeline {
         stage('Build') {
             steps {
                 // 使用 Maven 编译项目
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package -U'
             }
         }
 
