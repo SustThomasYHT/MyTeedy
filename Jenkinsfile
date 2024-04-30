@@ -36,20 +36,6 @@
 
 pipeline {
     agent any
-
-    tools {
-        // 确保你安装了 Maven，并在 Jenkins 配置中设置了 MAVEN_HOME 
-        maven 'Maven3'
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // 获取最新的代码
-                checkout scm
-            }
-        }
-
         stage('Build') {
             steps {
                 // 使用 Maven 编译项目
