@@ -36,6 +36,9 @@
 
 pipeline {
     agent any
+
+    stages {
+
         stage('Build') {
             steps {
                 // 使用 Maven 编译项目
@@ -68,11 +71,5 @@ pipeline {
                 }
             }
         }
-
-        // stage('Deploy') {
-        //     steps {
-        //         // 这里添加你的部署脚本，如果有的话
-        //         echo 'Deploying'
-        //     }
-        // }
     }
+}
