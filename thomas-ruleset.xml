@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<ruleset name="Custom Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        My custom rules
+    </description>
+
+
+    <!-- Your rules will come here -->
+    <!-- Rules related to Lines of Code (LoC) -->
+    <rule ref="category/java/design.xml/ExcessiveImports" />
+    <rule ref="category/java/design.xml/ExcessiveParameterList">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessivePublicCount">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyFields">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <priority>3</priority>
+    </rule>
+
+    <!-- Rule for Cyclomatic Complexity -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <priority>3</priority>
+    </rule>
+
+    <!-- Rule related to Weighted Methods per Class (WMC) -->
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <priority>3</priority>
+    </rule>
+
+    <!-- Rule for Coupling Between Objects -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <priority>3</priority>
+    </rule>
+
+    <!-- Note: Lack of Cohesion in Methods (LCOM) is not directly supported by PMD -->
+
+
+
+</ruleset>
