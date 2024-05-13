@@ -62,6 +62,7 @@ pipeline {
         stage('Generate JavaDoc') {
             steps {
                 // 生成 JavaDoc
+                sh 'mvn clean -DskipTests install'
                 sh 'mvn javadoc:jar -U'
             }
             post {
