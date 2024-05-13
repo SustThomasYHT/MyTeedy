@@ -62,7 +62,7 @@ pipeline {
         stage('Generate JavaDoc') {
             steps {
                 // 生成 JavaDoc
-                sh 'mvn javadoc:jar'
+                sh 'mvn javadoc:jar -U'
             }
             post {
                 always {
