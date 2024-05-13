@@ -38,6 +38,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Clean and Update Dependencies') {
+            steps {
+                script {
+                    // 清理本地Maven缓存并强制更新依赖
+                    sh 'mvn clean dependency:purge-local-repository -DreResolve=true -U'
+                }
+            }
+        }
 
         stage('Build') {
             steps {
