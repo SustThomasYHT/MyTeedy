@@ -93,24 +93,24 @@ pipeline {
             steps {
                 // 生成 JavaDoc
                 sh 'mvn clean -DskipTests install'
-                sh 'docker build -t teedy2024_lab12 .'
+                sh 'docker build -t teedy2024_lab12_1 .'
             }
         }
 
         stage('Upload image') {
             steps {
                 // 生成 JavaDoc
-                sh 'docker tag teedy2024_lab12 thomasyht1728/teedy_lab12:v2.0'
-                sh 'docker push thomasyht1728/teedy_lab12:v2.0'
+                sh 'docker tag teedy2024_lab12 thomasyht1728/teedy_lab12_1:v2.0'
+                sh 'docker push thomasyht1728/teedy_lab12_1:v2.0'
             }
         }
 
         stage('Run containers') {
             steps {
                 // 生成 JavaDoc
-                sh 'docker run -d -p 8084:8080 --name teedy_lab12_01 teedy2024_lab12'
-                sh 'docker run -d -p 8083:8080 --name teedy_lab12_02 teedy2024_lab12'
-                sh 'docker run -d -p 8082:8080 --name teedy_lab12_03 teedy2024_lab12'
+                sh 'docker run -d -p 8084:8080 --name teedy_lab12_01_1 teedy2024_lab12_1'
+                sh 'docker run -d -p 8083:8080 --name teedy_lab12_02_1 teedy2024_lab12_1'
+                sh 'docker run -d -p 8082:8080 --name teedy_lab12_03_1 teedy2024_lab12_1'
             }
         }
     }
