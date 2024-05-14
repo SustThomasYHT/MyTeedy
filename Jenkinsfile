@@ -108,9 +108,9 @@ pipeline {
         stage('Run containers') {
             steps {
                 // 生成 JavaDoc
-                sh 'docker run -d -p 8084:8080 --name teedy_lab12_01_1 teedy2024_lab12_1'
-                sh 'docker run -d -p 8083:8080 --name teedy_lab12_02_1 teedy2024_lab12_1'
-                sh 'docker run -d -p 8082:8080 --name teedy_lab12_03_1 teedy2024_lab12_1'
+                sh 'docker run -d -p 8084:8080 --name teedy_lab12_01_2 teedy2024_lab12_1'
+                sh 'docker run -d -p 8083:8080 --name teedy_lab12_02_2 teedy2024_lab12_1'
+                sh 'docker run -d -p 8082:8080 --name teedy_lab12_03_2 teedy2024_lab12_1'
             }
         }
     }
