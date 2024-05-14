@@ -101,7 +101,7 @@ pipeline {
             steps {
                 // 生成 JavaDoc
                 sh 'docker tag teedy2024_lab12 thomasyht1728/teedy_lab12_1:v2.0'
-                sh 'docker push thomasyht1728/teedy_lab12_1:v2.0'
+                // sh 'docker push thomasyht1728/teedy_lab12_1:v2.0'
             }
         }
 
