@@ -34,6 +34,50 @@
 
 
 
+// pipeline {
+//     agent any
+
+//     stages {
+        
+//         stage('Build') {
+//             steps {
+//                 // 使用 Maven 编译项目
+//                 sh 'mvn -B -DskipTests clean package -U'
+//             }
+//         }
+
+//         stage('Test') {
+//             steps {
+//                 // 运行测试并生成 Surefire 报告
+//                 sh 'mvn test'
+//             }
+//             post {
+//                 always {
+//                     // 收集 Surefire 报告
+//                     junit '**/target/surefire-reports/*.xml'
+//                 }
+//             }
+//         }
+
+//         stage('Generate JavaDoc') {
+//             steps {
+//                 // 生成 JavaDoc
+//                 sh 'mvn clean -DskipTests install'
+//                 sh 'mvn javadoc:jar -U'
+//             }
+//             post {
+//                 always {
+//                     // 归档生成的 JavaDoc
+//                     archiveArtifacts artifacts: '**/target/apidocs/**/*', fingerprint: true
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+
+
 pipeline {
     agent any
 
@@ -45,32 +89,30 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package -U'
             }
         }
-
-        stage('Test') {
-            steps {
-                // 运行测试并生成 Surefire 报告
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    // 收集 Surefire 报告
-                    junit '**/target/surefire-reports/*.xml'
-                }
-            }
-        }
-
-        stage('Generate JavaDoc') {
+        stage('Building image') {
             steps {
                 // 生成 JavaDoc
                 sh 'mvn clean -DskipTests install'
-                sh 'mvn javadoc:jar -U'
+                sh 'docker build -t teedy2024_lab12 .'
             }
-            post {
-                always {
-                    // 归档生成的 JavaDoc
-                    archiveArtifacts artifacts: '**/target/apidocs/**/*', fingerprint: true
-                }
+        }
+
+        stage('Upload image') {
+            steps {
+                // 生成 JavaDoc
+                sh 'docker tag teedy2024_lab12 thomasyht1728/teedy_lab12:v1.0'
+                sh 'docker push thomasyht1728/teedy_lab12:v1.0'
+            }
+        }
+
+        stage('Run containers') {
+            steps {
+                // 生成 JavaDoc
+                sh 'docker run -d -p 8084:12117 --name teedy_lab12_01 teedy2024_lab12'
+                sh 'docker run -d -p 8083:12117 --name teedy_lab12_02 teedy2024_lab12'
+                sh 'docker run -d -p 8082:12117 --name teedy_lab12_03 teedy2024_lab12'
             }
         }
     }
 }
+
