@@ -127,7 +127,7 @@ pipeline {
                  }
                  stage('K8s') {
                          steps {
-                                 sh 'kubectl set image deployments/hello-node container-name=1a47bb8b273a'
+                                 sh 'kubectl set image deployments/hello-node docs=1a47bb8b273a'
                          }
                 }
          }
