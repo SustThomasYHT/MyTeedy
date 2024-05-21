@@ -78,41 +78,57 @@
 
 
 
-pipeline {
-    agent any
+// pipeline {
+//     agent any
 
-    stages {
+//     stages {
         
-        stage('Build') {
-            steps {
-                // 使用 Maven 编译项目
-                sh 'mvn -B -DskipTests clean package -U'
-            }
-        }
-        stage('Building image') {
-            steps {
-                // 生成 JavaDoc
-                sh 'mvn clean -DskipTests install'
-                sh 'docker build -t teedy2024_lab12_1 .'
-            }
-        }
+//         stage('Build') {
+//             steps {
+//                 // 使用 Maven 编译项目
+//                 sh 'mvn -B -DskipTests clean package -U'
+//             }
+//         }
+//         stage('Building image') {
+//             steps {
+//                 // 生成 JavaDoc
+//                 sh 'mvn clean -DskipTests install'
+//                 sh 'docker build -t teedy2024_lab12_1 .'
+//             }
+//         }
 
-        stage('Upload image') {
-            steps {
-                // 生成 JavaDoc
-                sh 'docker tag teedy2024_lab12 thomasyht1728/teedy_lab12_1:v2.0'
-                // sh 'docker push thomasyht1728/teedy_lab12_1:v2.0'
-            }
-        }
+//         stage('Upload image') {
+//             steps {
+//                 // 生成 JavaDoc
+//                 sh 'docker tag teedy2024_lab12 thomasyht1728/teedy_lab12_1:v2.0'
+//                 // sh 'docker push thomasyht1728/teedy_lab12_1:v2.0'
+//             }
+//         }
 
-        stage('Run containers') {
-            steps {
-                // 生成 JavaDoc
-                sh 'docker run -d -p 8084:8080 --name teedy_lab12_01_2 teedy2024_lab12_1'
-                sh 'docker run -d -p 8083:8080 --name teedy_lab12_02_2 teedy2024_lab12_1'
-                sh 'docker run -d -p 8082:8080 --name teedy_lab12_03_2 teedy2024_lab12_1'
-            }
-        }
-    }
-}
+//         stage('Run containers') {
+//             steps {
+//                 // 生成 JavaDoc
+//                 sh 'docker run -d -p 8084:8080 --name teedy_lab12_01_2 teedy2024_lab12_1'
+//                 sh 'docker run -d -p 8083:8080 --name teedy_lab12_02_2 teedy2024_lab12_1'
+//                 sh 'docker run -d -p 8082:8080 --name teedy_lab12_03_2 teedy2024_lab12_1'
+//             }
+//         }
+//     }
+// }
 
+pipeline {
+         agent any
+        
+         stages {
+                 stage('Build') { 
+                        steps {
+                                 sh 'mvn -B -DskipTests clean package' 
+                        }
+                 }
+                 stage('K8s') {
+                         steps {
+                                 sh 'kubectl set image deployments/hello-node-thomas container-name=1a47bb8b273a'
+                         }
+                }
+         }
+ }
