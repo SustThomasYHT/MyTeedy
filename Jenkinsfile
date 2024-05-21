@@ -127,7 +127,7 @@ pipeline {
                  }
                  stage('K8s') {
                          steps {
-                                 sh 'kubectl set image deployments/hello-node docs=d4cf040def1e'
+                                 sh 'kubectl set image deployments/hello-node docs=6278fbea197f'
                          }
                 }
          }
